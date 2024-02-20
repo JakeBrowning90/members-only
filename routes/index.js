@@ -11,4 +11,9 @@ router.get('/sign-up', function(req, res, next) {
   res.render('sign-up', { title: 'Sign-up' });
 });
 
+// TODO: create new user
+router.post('/sign-up', function(req, res, next) {
+  res.redirect('/');
+});
+
 module.exports = router;
