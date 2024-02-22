@@ -32,8 +32,6 @@ exports.sign_up_post = [
             return;
         } else {
             await user.save();
-            //Placeholder console log
-            console.log('New user saved')
             res.redirect('/');
         }
     })
