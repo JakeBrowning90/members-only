@@ -6,6 +6,7 @@ exports.sign_up_get = asyncHandler(async(req, res, next) => {
     res.render('sign-up', { title: 'Sign-up' });
 });
 
+//TODO: params for fields, check for email in use, confirm password match, sanitize inputs
 exports.sign_up_post = [
     body("first_name")
         .trim(),
