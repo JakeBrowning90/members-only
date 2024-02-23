@@ -12,16 +12,26 @@ exports.sign_up_post = [
         .trim()
         .isLength({ min: 1 })
         .withMessage("First name required")
-        .isLength({ max: 5 })
-        .withMessage("First name must not exceed 5 characters"),
+        .isLength({ max: 20 })
+        .withMessage("First name must not exceed 20 characters"),
     body("last_name")
-        .trim(),
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage("Last name required")
+        .isLength({ max: 20 })
+        .withMessage("Last name must not exceed 20 characters"),
     body("email")
         .trim()
+        .isLength({ min: 1 })
+        .withMessage("Email required")
         .isEmail()
-        .withMessage("Invalid email address"),
+        .withMessage("Invalid email address")
+        .isLength({ max: 30 })
+        .withMessage("Email must not exceed 30 characters"),
     body("password")
-        .trim(),
+        .trim()
+        .isLength({ min: 8, max: 20 })
+        .withMessage("Password must be between 8 and 20 characters."),
 
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
@@ -30,6 +40,8 @@ exports.sign_up_post = [
             last_name: req.body.last_name,
             email: req.body.email,
             password: req.body.password,
+            is_member: false,
+            is_admin: false
         });
         if (!errors.isEmpty()) {
             console.log(errors.array())
