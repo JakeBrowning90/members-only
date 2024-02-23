@@ -38,6 +38,11 @@ exports.sign_up_post = [
         .trim()
         .isLength({ min: 8, max: 20 })
         .withMessage("Password must be between 8 and 20 characters."),
+    body("confirm_password")
+        .custom((value, { req }) => {
+            return value === req.body.password;
+        })
+        .withMessage("Typed passwords do not match"),
 
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
@@ -50,7 +55,6 @@ exports.sign_up_post = [
             is_admin: false
         });
         if (!errors.isEmpty()) {
-            console.log(errors.array())
             res.render('sign-up', {
                 title: 'Sign-up' ,
                 errors: errors.array(),
