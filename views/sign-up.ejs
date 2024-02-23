@@ -5,6 +5,16 @@
     <%- include("./partials/header"); %>
     <h1><%= title %></h1>
 
+    <% if (locals.errors) { %>
+      <ul>
+        <% for (let i = 0; i < locals.errors.length; i++) { %>
+          <li>
+            <%= locals.errors[i].msg %>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+
     <form action="" method="POST">
       <label for="first_name">First Name</label>
       <input name="first_name" type="text" maxlength="20">

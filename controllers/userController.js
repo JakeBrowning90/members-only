@@ -9,11 +9,17 @@ exports.sign_up_get = asyncHandler(async(req, res, next) => {
 //TODO: params for fields, check for email in use, confirm password match, sanitize inputs
 exports.sign_up_post = [
     body("first_name")
-        .trim(),
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage("First name required")
+        .isLength({ max: 5 })
+        .withMessage("First name must not exceed 5 characters"),
     body("last_name")
         .trim(),
     body("email")
-        .trim(),
+        .trim()
+        .isEmail()
+        .withMessage("Invalid email address"),
     body("password")
         .trim(),
 
@@ -26,6 +32,7 @@ exports.sign_up_post = [
             password: req.body.password,
         });
         if (!errors.isEmpty()) {
+            console.log(errors.array())
             res.render('sign-up', {
                 title: 'Sign-up' ,
                 errors: errors.array(),
