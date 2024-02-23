@@ -27,7 +27,13 @@ exports.sign_up_post = [
         .isEmail()
         .withMessage("Invalid email address")
         .isLength({ max: 30 })
-        .withMessage("Email must not exceed 30 characters"),
+        .withMessage("Email must not exceed 30 characters")
+        .custom(async value =>{
+            const existinguser = await User.findOne({ email: value });
+            if (existinguser) {
+                throw new Error('Email already in use.')
+            }
+        }),
     body("password")
         .trim()
         .isLength({ min: 8, max: 20 })
