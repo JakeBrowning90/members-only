@@ -11,4 +11,13 @@ form {
   display: flex;
   flex-direction: column;
   max-width: 800px;
+  background-color: rgb(206, 206, 206);
+  padding: 20px;
+  gap: 5px;
+}
+
+.header {
+  background-color: rgb(206, 206, 206);
+  padding: 20px;
+  gap: 5px;
 }
