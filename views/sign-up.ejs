@@ -17,11 +17,23 @@
 
     <form action="" method="POST">
       <label for="first_name">First Name</label>
-      <input name="first_name" type="text" maxlength="20">
+      <input name="first_name" 
+             type="text" 
+             maxlength="20" 
+             value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.first_name) %>" 
+      >
       <label for="last_name">Last Name</label>
-      <input name="last_name" type="text" maxlength="20">
+      <input name="last_name" 
+             type="text" 
+             maxlength="20"
+             value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.last_name) %>" 
+      >
       <label for="email">Email</label>
-      <input name="email" type="text" maxlength="30">
+      <input name="email" 
+             type="text" 
+             maxlength="30"
+             value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.email) %>" 
+      >
       <label for="password">Password</label>
       <input name="password" type="password" maxlength="20">
       <label for="confirm_password">Confirm Password</label>

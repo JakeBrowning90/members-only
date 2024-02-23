@@ -6,7 +6,7 @@ exports.sign_up_get = asyncHandler(async(req, res, next) => {
     res.render('sign-up', { title: 'Sign-up' });
 });
 
-//TODO: params for fields, check for email in use, confirm password match, sanitize inputs
+//TODO: Sanitize inputs
 exports.sign_up_post = [
     body("first_name")
         .trim()
@@ -57,6 +57,7 @@ exports.sign_up_post = [
         if (!errors.isEmpty()) {
             res.render('sign-up', {
                 title: 'Sign-up' ,
+                userDetail: user,
                 errors: errors.array(),
             });
             return;
