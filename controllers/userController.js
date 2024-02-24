@@ -119,3 +119,12 @@ exports.log_in_post = [
         failureRedirect: "log-in"
       })
 ];
+
+exports.log_out_get = asyncHandler(async(req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect("/");
+    });
+});

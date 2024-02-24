@@ -1,5 +1,14 @@
 <div class="header">
     <a href="/">Message Board</a>
     <a href="/users/sign-up">Sign Up</a>
-    <a href="/users/log-in">Log In</a>
+
+    <% if (currentUser) {%>
+        <a href="/users/log-out">Log Out</a>
+    <% } else { %>
+        <a href="/users/log-in">Log In</a>
+    <% } %>    
+
+    <% if (currentUser) {%>
+        <h1>Logged in as <%= currentUser.first_name + " " + currentUser.last_name %></h1>
+    <% } %>
 </div>

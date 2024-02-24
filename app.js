@@ -65,6 +65,11 @@ app.use(session({ secret: process.env.SESSION, resave: false, saveUninitialized:
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

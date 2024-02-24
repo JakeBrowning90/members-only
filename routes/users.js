@@ -13,4 +13,7 @@ router.get('/log-in', user_controller.log_in_get);
 // TODO: post log-in
 router.post('/log-in', user_controller.log_in_post);
 
+router.get('/log-out', user_controller.log_out_get);
+
+
 module.exports = router;
