@@ -1,6 +1,45 @@
 const User = require('../models/user');
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+
+passport.use(
+    new LocalStrategy(async (username, password, done) => {
+      try {
+        const user = await User.findOne({ email: username });
+        if (!user) {
+          return done(null, false, { message: "Incorrect username" });
+        };
+        // if (user.password !== password) {
+        //   return done(null, false, { message: "Incorrect password" });
+        // };
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+        // passwords do not match!
+            return done(null, false, { message: "Incorrect password" })
+        }
+        return done(null, user);
+      } catch(err) {
+        return done(err);
+      };
+    })
+  );
+  
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+  
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id);
+      done(null, user);
+    } catch(err) {
+      done(err);
+    };
+  });
 
 exports.sign_up_get = asyncHandler(async(req, res, next) => {
     res.render('sign-up', { title: 'Sign-up' });
@@ -46,14 +85,16 @@ exports.sign_up_post = [
 
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
+
         const user = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
-            password: req.body.password,
+            password: bcrypt.hashSync(req.body.password, 10),
             is_member: false,
             is_admin: false
         });
+
         if (!errors.isEmpty()) {
             res.render('sign-up', {
                 title: 'Sign-up' ,
@@ -66,4 +107,15 @@ exports.sign_up_post = [
             res.redirect('/');
         }
     })
+];
+
+exports.log_in_get = asyncHandler(async(req, res, next) => {
+    res.render('log-in', { title: 'Log In' });
+});
+
+exports.log_in_post = [
+    passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "log-in"
+      })
 ];
