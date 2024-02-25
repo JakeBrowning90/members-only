@@ -15,5 +15,13 @@ router.post('/log-in', user_controller.log_in_post);
 
 router.get('/log-out', user_controller.log_out_get);
 
+router.get('/confirm', user_controller.confirm_get);
+
+router.post('/confirm', user_controller.confirm_post);
+
+router.get('/admin', user_controller.admin_get);
+
+router.post('/admin', user_controller.admin_post);
+
 
 module.exports = router;

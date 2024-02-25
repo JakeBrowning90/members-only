@@ -128,3 +128,19 @@ exports.log_out_get = asyncHandler(async(req, res, next) => {
         res.redirect("/");
     });
 });
+
+exports.confirm_get = asyncHandler(async(req, res, next) => {
+    res.render('confirm', { title: 'Confirm Membership' });
+});
+
+exports.confirm_post = asyncHandler(async(req, res, next) => {
+    res.redirect("/");
+});
+
+exports.admin_get = asyncHandler(async(req, res, next) => {
+    res.render('admin', { title: 'Confirm Admin Status' });
+});
+
+exports.admin_post = asyncHandler(async(req, res, next) => {
+    res.redirect("/");
+});

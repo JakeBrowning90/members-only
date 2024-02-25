@@ -3,7 +3,7 @@
   <%- include("./partials/head"); %>
   <body>
     <%- include("./partials/header"); %>
-    <h1>Welcome to <%= title %></h1>
+    <h1>Welcome to "<%= title %>"</h1>
 
     <% if (currentUser && currentUser.is_admin) { %>
       <h1>You are logged in as an ADMIN</h1>
