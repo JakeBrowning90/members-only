@@ -6,6 +6,8 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
+require('dotenv').config();
+
 passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
@@ -134,7 +136,14 @@ exports.confirm_get = asyncHandler(async(req, res, next) => {
 });
 
 exports.confirm_post = asyncHandler(async(req, res, next) => {
-    res.redirect("/");
+    if (req.body.password == process.env.CONFIRM_USER_PW) {
+        console.log("Welcome, new member!")
+        res.redirect("/");
+    } else {
+        console.log("Incorrect");
+        res.render('confirm', { title: 'Confirm Membership' });
+    }
+    
 });
 
 exports.admin_get = asyncHandler(async(req, res, next) => {
