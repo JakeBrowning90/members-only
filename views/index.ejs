@@ -4,5 +4,16 @@
   <body>
     <%- include("./partials/header"); %>
     <h1>Welcome to <%= title %></h1>
+
+    <% if (currentUser && currentUser.is_admin) { %>
+      <h1>You are logged in as an ADMIN</h1>
+    <% } else if (currentUser && currentUser.is_member) { %>
+      <h1>You are logged in as a MEMBER</h1>
+    <% } else if (currentUser) { %>
+      <h1>You are logged in but UNVERIFIED</h1>
+    <% } else { %>
+      <h1>You are a VISITOR</h1>
+    <% } %>
+    
   </body>
 </html>
