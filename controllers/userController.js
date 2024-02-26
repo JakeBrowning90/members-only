@@ -137,10 +137,10 @@ exports.confirm_get = asyncHandler(async(req, res, next) => {
 
 exports.confirm_post = asyncHandler(async(req, res, next) => {
     if (req.body.password == process.env.CONFIRM_USER_PW) {
-        console.log("Welcome, new member!")
+        let userId = req.user._id;
+        await User.findByIdAndUpdate(userId, {is_member: true}, {});
         res.redirect("/");
     } else {
-        console.log("Incorrect");
         res.render('confirm', { title: 'Confirm Membership' });
     }
     
