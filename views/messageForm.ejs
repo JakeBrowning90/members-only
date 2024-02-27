@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/head"); %>
+  <body>
+    <%- include("./partials/header"); %>
+    <h1><%= title %></h1>
+
+    <% if (locals.errors) { %>
+      <ul>
+        <% for (let i = 0; i < locals.errors.length; i++) { %>
+          <li>
+            <%= locals.errors[i].msg %>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+
+    <form action="" method="POST">
+      <label for="title">Title</label>
+      <input name="title" 
+             type="text" 
+             maxlength="30" 
+      >
+      <label for="body">Body</label>
+      <input name="body" 
+             type="text" 
+             maxlength="500"
+      >
+      <button>Submit</button>
+    </form>
+
+  </body>
+</html>
