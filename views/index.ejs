@@ -24,7 +24,30 @@
     <% } else { %>
       <h1>You are a VISITOR</h1>
     <% } %>
-    
+
+    <% if (messages) { %>
+      <ul class="messagesList">
+        <% messages.forEach((message) => { %>
+          <li>
+            <div class="messageCard">
+              <h2>
+                <%= message.user.email %>
+              </h2>
+              <h2>
+                <%= message.title %>
+              </h2>
+              <p>
+                <%= message.body %>
+              </p>
+              <p>
+                <%= message.timestamp %>
+              </p>
+            </div>
+          </li>
+        <% }) %>   
+      </ul>
+    <% } %>
+
 
   </body>
 </html>
