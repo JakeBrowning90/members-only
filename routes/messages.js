@@ -1,24 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
+const message_controller = require('../controllers/messageController');
+
 // TODO: get new message form (or make popup on home?)
-router.get('/new', function(req, res, next) {
-  res.render('sign-up', { title: 'Sign-up' });
-});
+router.get('/new-message', message_controller.message_form_get);
 
 // TODO: post new message
-router.post('/new', function(req, res, next) {
-  res.redirect('/');
-});
+router.post('/new-message', message_controller.message_form_post);
 
 // TODO: get delete messate form
-router.get('/delete', function(req, res, next) {
-  res.redirect('/');
-});
+router.get('/delete', message_controller.message_delete_get);
 
 // TODO: post delete message form
-router.post('/delete', function(req, res, next) {
-  res.redirect('/');
-});
+router.post('/delete', message_controller.message_delete_post);
 
 module.exports = router;

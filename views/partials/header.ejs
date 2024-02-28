@@ -1,15 +1,7 @@
 <div class="header">
     <a href="/" class="homeLink">Message Board</a>
-    <!-- <a href="/users/sign-up">Sign Up</a> -->
-
-    <!-- <% if (currentUser) {%>
-        <h1>Logged in:<%= currentUser.first_name + " " + currentUser.last_name %></h1>
-        <a href="/users/log-out">Log Out</a>
-    <% } else { %>
-        <a href="/users/sign-up">Sign Up</a>
-        <a href="/users/log-in">Log In</a>
-    <% } %>     -->
     
+    <!-- Conditional nav links -->
     <% if (currentUser && currentUser.is_admin) { %>
         <h1>ADMIN: <%= currentUser.first_name + " " + currentUser.last_name %></h1>
         <a href="/users/log-out">Log Out</a>

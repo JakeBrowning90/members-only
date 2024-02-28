@@ -4,6 +4,16 @@
   <body>
     <%- include("./partials/header"); %>
     <h1>Welcome to "<%= title %>"</h1>
+    
+    <!-- Only show link to new message form for members -->
+    <% if (currentUser && currentUser.is_member) { %>
+      <a href="/messages/new-message">New Message</a>
+    <% } else { %>
+      <h1>Sign up to join the conversation!</h1>
+    <% } %>
+
+    <!-- Placeholder for testing -->
+    <hr>
 
     <% if (currentUser && currentUser.is_admin) { %>
       <h1>You are logged in as an ADMIN</h1>
@@ -15,5 +25,6 @@
       <h1>You are a VISITOR</h1>
     <% } %>
     
+
   </body>
 </html>
