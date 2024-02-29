@@ -45,3 +45,13 @@ form {
   gap: 10px;
   padding: 10px;
 }
+
+.messageCard > * {
+  display: flex;
+  flex-direction: row;
+}
+
+.removeMessageLink {
+  color: white;
+  margin-left: auto;
+}

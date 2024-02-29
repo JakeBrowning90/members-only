@@ -30,17 +30,15 @@
         <% messages.forEach((message) => { %>
           <li>
             <div class="messageCard">
-              <h2>
-                <%= message.user.email %>
-              </h2>
-              <h2>
+              <div>
                 <%= message.title %>
-              </h2>
+                <a href="" class="removeMessageLink">Remove</a>
+              </div>
               <p>
-                <%= message.body %>
+                By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
               </p>
               <p>
-                <%= message.timestamp %>
+                <%= message.body %>
               </p>
             </div>
           </li>
