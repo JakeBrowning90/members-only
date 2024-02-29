@@ -2,11 +2,16 @@ const Message = require('../models/message');
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
+// Get form for writing a new message
 exports.message_form_get = asyncHandler(async(req, res, next) => {
-    res.render('message-form', { title: 'Write New Message' });
+    if (req.user && (req.user.is_member == true)) {
+        res.render('message-form', { title: 'Write New Message' });
+    } else
+        res.redirect('/');
 });
 
 // TODO: Add validation/sanitisation to messages
+// Post new message
 exports.message_form_post = [
     body('title')
         .trim(),
@@ -24,6 +29,7 @@ exports.message_form_post = [
         });
 
         if (!errors.isEmpty()) {
+            // Re-render page, display error messages and populate fields
             res.render('message-form', {
                 title: 'Write New Message' ,
                 message: message,
@@ -31,27 +37,36 @@ exports.message_form_post = [
             });
             return;
         } else {
+            // Add new message to database and redirect to home
             await message.save();
             res.redirect('/');
         }
     })
 ];
 
+// Get confirmation screen for deleting a message
 exports.message_delete_get = asyncHandler(async(req, res, next) => {
-    const message = await Message.findById(req.params.id)
-        .populate("user")
-        .exec();
+    if (req.user && (req.user.is_admin == true)) {
+        // Get message from database
+        const message = await Message.findById(req.params.id)
+            .populate("user")
+            .exec();
 
-    if (message === null) {
-        res.redirect("/");
+        // Redirect home if message doesn't exist
+        if (message === null) {
+            res.redirect("/");
+        }
+        
+        res.render('message-delete', {
+            title: 'Delete Post',
+            message: message,
+        });
+    } else {
+        res.redirect('/')
     }
-    
-    res.render('message-delete', {
-        title: 'Delete Post',
-        message: message,
-    });
 });
 
+// Delete message and redirect to home
 exports.message_delete_post = asyncHandler(async(req, res, next) => {
     await Message.findByIdAndDelete(req.params.id);
     res.redirect('/');

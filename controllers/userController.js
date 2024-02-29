@@ -12,15 +12,13 @@ passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
         const user = await User.findOne({ email: username });
+        // If user doesn't exist in DB
         if (!user) {
           return done(null, false, { message: "Incorrect username" });
         };
-        // if (user.password !== password) {
-        //   return done(null, false, { message: "Incorrect password" });
-        // };
         const match = await bcrypt.compare(password, user.password);
+        // If password doesn't match 
         if (!match) {
-        // passwords do not match!
             return done(null, false, { message: "Incorrect password" })
         }
         return done(null, user);
@@ -43,10 +41,12 @@ passport.use(
     };
   });
 
+// Get form so creating new user
 exports.sign_up_get = asyncHandler(async(req, res, next) => {
     res.render('sign-up', { title: 'Sign-up' });
 });
 
+// Post new user
 //TODO: Sanitize inputs
 exports.sign_up_post = [
     body("first_name")
@@ -88,6 +88,7 @@ exports.sign_up_post = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
+        // Create new user with form fields, membership and admin false by default
         const user = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
@@ -97,6 +98,7 @@ exports.sign_up_post = [
             is_admin: false
         });
 
+        // If errors, redraw and repopulate form with errors displayed
         if (!errors.isEmpty()) {
             res.render('sign-up', {
                 title: 'Sign-up' ,
@@ -105,16 +107,19 @@ exports.sign_up_post = [
             });
             return;
         } else {
+            // Save user to database and redirect to home
             await user.save();
             res.redirect('/');
         }
     })
 ];
 
+// Get log-in form
 exports.log_in_get = asyncHandler(async(req, res, next) => {
     res.render('log-in', { title: 'Log In' });
 });
 
+// Redirect to home if successful, reload page if not
 exports.log_in_post = [
     passport.authenticate("local", {
         successRedirect: "/",
@@ -131,10 +136,16 @@ exports.log_out_get = asyncHandler(async(req, res, next) => {
     });
 });
 
+// Draw form for membership password
 exports.confirm_get = asyncHandler(async(req, res, next) => {
-    res.render('confirm', { title: 'Confirm Membership' });
+    if (req.user && (req.user.is_member == false)) {
+        res.render('confirm', { title: 'Confirm Membership' });
+    } else {
+        res.redirect('/');
+    }
 });
 
+// If password matches, update user's membership status
 exports.confirm_post = asyncHandler(async(req, res, next) => {
     if (req.body.password == process.env.CONFIRM_USER_PW) {
         let userId = req.user._id;
@@ -142,14 +153,23 @@ exports.confirm_post = asyncHandler(async(req, res, next) => {
         res.redirect("/");
     } else {
         res.render('confirm', { title: 'Confirm Membership' });
-    }
-    
+    } 
 });
 
 exports.admin_get = asyncHandler(async(req, res, next) => {
-    res.render('admin', { title: 'Confirm Admin Status' });
+    if (req.user && (req.user.is_member == true)) {
+        res.render('admin', { title: 'Confirm Admin Status' });
+    } else {
+        res.redirect('/');
+    }
 });
 
 exports.admin_post = asyncHandler(async(req, res, next) => {
-    res.redirect("/");
+    if (req.body.password == process.env.CONFIRM_ADMIN_PW) {
+        let userId = req.user._id;
+        await User.findByIdAndUpdate(userId, {is_admin: true}, {});
+        res.redirect("/");
+    } else {
+        res.render('confirm', { title: 'Confirm Membership' });
+    }
 });
