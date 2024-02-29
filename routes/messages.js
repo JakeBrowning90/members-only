@@ -10,9 +10,9 @@ router.get('/new-message', message_controller.message_form_get);
 router.post('/new-message', message_controller.message_form_post);
 
 // TODO: get delete messate form
-router.get('/delete', message_controller.message_delete_get);
+router.get('/:id/delete', message_controller.message_delete_get);
 
 // TODO: post delete message form
-router.post('/delete', message_controller.message_delete_post);
+router.post('/:id/delete', message_controller.message_delete_post);
 
 module.exports = router;
