@@ -32,7 +32,7 @@
             <div class="messageCard">
               <div>
                 <%= message.title %>
-                <% if (currentUser && (currentUser.is_admin == true)) { %>
+                <% if (currentUser && (currentUser.is_admin)) { %>
                   <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a>
                 <% } %>
               </div>
