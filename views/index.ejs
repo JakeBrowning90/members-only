@@ -3,7 +3,8 @@
   <%- include("./partials/head"); %>
   <body>
     <%- include("./partials/header"); %>
-    <h1>Welcome to "<%= title %>"</h1>
+    <main>
+      <h1>Welcome to "<%= title %>"</h1>
     
     <!-- Only show link to new message form for members -->
     <% if (currentUser) { %>
@@ -57,6 +58,7 @@
       </ul>
     <% } %>
 
-
+    </main>
+    <%- include("./partials/footer"); %>
   </body>
 </html>

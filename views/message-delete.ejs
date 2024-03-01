@@ -3,21 +3,22 @@
   <%- include("./partials/head"); %>
   <body>
     <%- include("./partials/header"); %>
-    <h1><%= title %></h1>
+    <main>
+      <h1><%= title %></h1>
 
-    <% if (locals.errors) { %>
-      <ul>
-        <% for (let i = 0; i < locals.errors.length; i++) { %>
-          <li>
-            <%= locals.errors[i].msg %>
-          </li>
-        <% } %>
-      </ul>
-    <% } %>
+      <% if (locals.errors) { %>
+        <ul>
+          <% for (let i = 0; i < locals.errors.length; i++) { %>
+            <li>
+              <%= locals.errors[i].msg %>
+            </li>
+          <% } %>
+        </ul>
+      <% } %>
     
-    <h1>Are you sure you want to delete this post?</h1>
+      <h1>Are you sure you want to delete this post?</h1>
 
-    <div class="messageCard">
+      <div class="messageCard">
         <p>
           By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
         </p>
@@ -29,10 +30,9 @@
         </p>
       </div>
 
-    <form action="" method="POST">
-
-      <button>Delete</button>
-    </form>
-
+      <form action="" method="POST">
+        <button>Delete</button>
+      </form>
+    </main>
   </body>
 </html>

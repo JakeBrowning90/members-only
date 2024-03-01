@@ -1,8 +1,28 @@
-body {
-  padding: 20px;
-  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
-  max-width: 800px;
+* {
+  box-sizing: border-box;
+}
 
+:root {
+  --palette-black: #212121;
+  --palette-blue: #00447c;
+  --palette-teal: #0b7b9e;
+  --palette-cream: #dddace;
+  --palette-white: #f2f3f4;
+}
+
+html, body {
+  height: 100vh;
+  display: flex;
+}
+
+body {
+  background-color: var(--palette-cream);
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 800px;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 a {
@@ -12,19 +32,33 @@ a {
 form {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  /* max-width: 800px; */
   background-color: rgb(206, 206, 206);
   padding: 20px;
   gap: 5px;
 }
 
-.header {
-  background-color: rgb(206, 206, 206);
+header {
+  /* position: fixed; */
+  height: 100px;
+  width: 800px;
+  background-color: var(--palette-teal);
   display: flex;
   flex-direction: row;
   justify-content: end; 
   padding: 20px;
   gap: 5px;
+}
+
+main {
+  background-color: var(--palette-white);
+  padding: 0 10px 0px 10px;
+  overflow: scroll;
+}
+
+footer {
+  background-color: var(--palette-teal);
+  padding: 20px;
 }
 
 .homeLink {
@@ -40,10 +74,11 @@ form {
 .messageCard {
   display: flex;
   flex-direction: column;
-  color: white;
-  background-color: rgb(85, 85, 85);
+  color: var(--palette-white);
+  background-color: var(--palette-blue);
   gap: 10px;
   padding: 10px;
+  border-radius: 10px;
 }
 
 .messageCard > * {
@@ -52,6 +87,6 @@ form {
 }
 
 .removeMessageLink {
-  color: white;
+  color: var(--palette-white);
   margin-left: auto;
 }

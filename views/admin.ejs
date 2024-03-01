@@ -3,24 +3,25 @@
   <%- include("./partials/head"); %>
   <body>
     <%- include("./partials/header"); %>
-    <h1><%= title %></h1>
+    <main>
+      <h1><%= title %></h1>
 
-    <% if (locals.errors) { %>
-      <ul>
-        <% for (let i = 0; i < locals.errors.length; i++) { %>
-          <li>
-            <%= locals.errors[i].msg %>
-          </li>
-        <% } %>
-      </ul>
-    <% } %>
-    <form action="" method="POST">
+      <% if (locals.errors) { %>
+        <ul>
+          <% for (let i = 0; i < locals.errors.length; i++) { %>
+            <li>
+              <%= locals.errors[i].msg %>
+            </li>
+          <% } %>
+        </ul>
+      <% } %>
 
-      <label for="password">Admin password:</label>
-      <input name="password" type="password" maxlength="20">
+      <form action="" method="POST">
+        <label for="password">Admin password:</label>
+        <input name="password" type="password" maxlength="20">
+        <button>Submit</button>
+      </form>
       
-      <button>Submit</button>
-    </form>
-
+    </main>
   </body>
 </html>
