@@ -14,9 +14,17 @@ exports.message_form_get = asyncHandler(async(req, res, next) => {
 // Post new message
 exports.message_form_post = [
     body('title')
-        .trim(),
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage("Title required.")
+        .isLength({ max: 100 })
+        .withMessage("Title must contain 100 or fewer characters."),
     body('body')
-        .trim(),
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage("Body required.")
+        .isLength({ max: 1000 })
+        .withMessage("Body must contain 1000 or fewer characters."),
 
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
