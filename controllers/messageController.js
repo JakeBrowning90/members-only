@@ -54,17 +54,17 @@ exports.message_form_post = [
 
 // Get confirmation screen for deleting a message
 exports.message_delete_get = asyncHandler(async(req, res, next) => {
-    if (req.user && (req.user.is_admin == true)) {
-        // Get message from database
-        const message = await Message.findById(req.params.id)
-            .populate("user")
-            .exec();
+    // Get message from database
+    const message = await Message.findById(req.params.id)
+    .populate("user")
+    .exec();
 
-        // Redirect home if message doesn't exist
-        if (message === null) {
-            res.redirect("/");
-        }
-        
+    // Redirect home if message doesn't exist
+    if (message === null) {
+        res.redirect("/");
+    }
+    
+    if (req.user && (req.user.is_admin || (req.user._id.equals(message.user._id)))) {
         res.render('message-delete', {
             title: 'Delete Post',
             message: message,

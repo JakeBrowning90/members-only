@@ -31,12 +31,14 @@
           <li>
             <div class="messageCard">
               <div>
+                <!-- Post author and timestamp is visible to members and original author -->
                 <% if (currentUser && (currentUser.is_member || currentUser._id.equals(message.user._id))) { %>
                   By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
                 <% } else { %>
                   Post authors and dates are visible to members
                 <% } %>
-
+                
+                <!-- Remove link is visible to admins and original author -->
                 <% if ( currentUser && (currentUser._id.equals(message.user._id) || currentUser.is_admin) ) { %> 
                   <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a>
                 <% } %>
