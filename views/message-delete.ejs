@@ -18,13 +18,12 @@
     <h1>Are you sure you want to delete this post?</h1>
 
     <div class="messageCard">
-        <div>
-          <%= message.title %>
-          <!-- <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a> -->
-        </div>
         <p>
           By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
         </p>
+        <div>
+          <%= message.title %>
+        </div>
         <p>
           <%= message.body %>
         </p>

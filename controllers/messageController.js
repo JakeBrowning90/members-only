@@ -63,7 +63,7 @@ exports.message_delete_get = asyncHandler(async(req, res, next) => {
     if (message === null) {
         res.redirect("/");
     }
-    
+    // Only render deletion form for admin or the post's author
     if (req.user && (req.user.is_admin || (req.user._id.equals(message.user._id)))) {
         res.render('message-delete', {
             title: 'Delete Post',
