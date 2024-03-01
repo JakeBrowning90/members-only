@@ -37,9 +37,10 @@
                   Post authors and dates are visible to members
                 <% } %>
 
-                <% if (currentUser && (currentUser.is_admin)) { %>
+                <% if ( currentUser && (currentUser._id.equals(message.user._id) || currentUser.is_admin) ) { %> 
                   <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a>
                 <% } %>
+
               </div>
               <p>
                 <%= message.title %>
