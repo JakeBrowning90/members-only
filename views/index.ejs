@@ -31,17 +31,19 @@
           <li>
             <div class="messageCard">
               <div>
-                <%= message.title %>
+                <% if (currentUser && (currentUser.is_member)) { %>
+                  By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
+                <% } else { %>
+                  Post authors and dates are visible to members
+                <% } %>
+
                 <% if (currentUser && (currentUser.is_admin)) { %>
                   <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a>
                 <% } %>
               </div>
               <p>
-                <% if (currentUser && (currentUser.is_member)) { %>
-                  By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
-                <% } else { %>
-                  Confirm membership to view posts' authors and dates
-                <% } %>
+                <%= message.title %>
+
               </p>
               <p>
                 <%= message.body %>
