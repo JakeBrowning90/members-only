@@ -16,28 +16,32 @@
     <% } %>
 
     <form action="" method="POST">
-      <label for="first_name">First Name</label>
+      <label for="first_name">First Name:</label>
       <input name="first_name" 
              type="text" 
              maxlength="20" 
-             value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.first_name) %>" 
+             value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.first_name) %>"
+             required
       >
-      <label for="last_name">Last Name</label>
+      <label for="last_name">Last Name:</label>
       <input name="last_name" 
              type="text" 
              maxlength="20"
              value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.last_name) %>" 
+             required
       >
-      <label for="email">Email</label>
+      <label for="email">Email:</label>
       <input name="email" 
              type="text" 
              maxlength="30"
              value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.email) %>" 
+             required
       >
-      <label for="password">Password</label>
-      <input name="password" type="password" maxlength="20">
-      <label for="confirm_password">Confirm Password</label>
-      <input name="confirm_password" type="password" maxlength="20">
+      <label for="password">Password:</label>
+      <input name="password" type="password" maxlength="20" required>
+      <label for="confirm_password">Re-type Password:</label>
+      <input name="confirm_password" type="password" maxlength="20" required>
+      
       <button>Submit</button>
     </form>
 

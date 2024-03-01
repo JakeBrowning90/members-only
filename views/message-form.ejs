@@ -16,16 +16,19 @@
     <% } %>
 
     <form action="" method="POST">
-      <label for="title">Title</label>
+      <label for="title">Title:</label>
       <input name="title" 
              type="text" 
              maxlength="30" 
+             required
       >
-      <label for="body">Body</label>
-      <textarea name="body" 
-             type="text" 
-             maxlength="500"
-             rows="10"
+      <label for="body">Body:</label>
+      <textarea 
+            name="body" 
+            type="text" 
+            maxlength="500"
+            rows="10" 
+            required
       >
       </textarea>
       <button>Submit</button>
