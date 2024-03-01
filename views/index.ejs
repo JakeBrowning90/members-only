@@ -6,7 +6,7 @@
     <h1>Welcome to "<%= title %>"</h1>
     
     <!-- Only show link to new message form for members -->
-    <% if (currentUser && currentUser.is_member) { %>
+    <% if (currentUser) { %>
       <a href="/messages/new-message">New Message</a>
     <% } else { %>
       <h1>Sign up to join the conversation!</h1>
@@ -37,7 +37,11 @@
                 <% } %>
               </div>
               <p>
-                By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
+                <% if (currentUser && (currentUser.is_member)) { %>
+                  By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
+                <% } else { %>
+                  Confirm membership to view posts' authors and dates
+                <% } %>
               </p>
               <p>
                 <%= message.body %>

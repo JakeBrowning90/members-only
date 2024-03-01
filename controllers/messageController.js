@@ -4,7 +4,7 @@ const { body, validationResult } = require("express-validator");
 
 // Get form for writing a new message
 exports.message_form_get = asyncHandler(async(req, res, next) => {
-    if (req.user && (req.user.is_member == true)) {
+    if (req.user ) {
         res.render('message-form', { title: 'Write New Message' });
     } else
         res.redirect('/');
