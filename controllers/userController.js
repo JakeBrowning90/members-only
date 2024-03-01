@@ -109,7 +109,7 @@ exports.sign_up_post = [
         } else {
             // Save user to database and redirect to home
             await user.save();
-            res.redirect('/');
+            res.redirect('/users/log-in');
         }
     })
 ];
