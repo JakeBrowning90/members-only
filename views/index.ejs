@@ -31,7 +31,7 @@
           <li>
             <div class="messageCard">
               <div>
-                <% if (currentUser && (currentUser.is_member)) { %>
+                <% if (currentUser && (currentUser.is_member || currentUser._id.equals(message.user._id))) { %>
                   By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
                 <% } else { %>
                   Post authors and dates are visible to members
