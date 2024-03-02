@@ -4,19 +4,28 @@
   <body>
     <%- include("./partials/header"); %>
     <main>
-      <h1>Welcome to "<%= title %>"</h1>
+      <!-- <h1>Welcome to "<%= title %>"</h1> -->
     
     <!-- Only show link to new message form for members -->
     <% if (currentUser) { %>
-      <a href="/messages/new-message">New Message</a>
+      <!-- <a href="/messages/new-message">New Message</a> -->
+      <form class="buttonWrapper" action="/messages/new-message">
+        <button>
+          Write New Message
+        </button>
+      </form>
     <% } else { %>
-      <h1>Sign up to join the conversation!</h1>
+      <form class="buttonWrapper" action="/users/sign-up">
+        <button>
+          Sign up to join the conversation!
+        </button>
+      </form>
     <% } %>
 
     <!-- Placeholder for testing -->
     <hr>
 
-    <% if (currentUser && currentUser.is_admin) { %>
+    <!-- <% if (currentUser && currentUser.is_admin) { %>
       <h1>You are logged in as an ADMIN</h1>
     <% } else if (currentUser && currentUser.is_member) { %>
       <h1>You are logged in as a MEMBER</h1>
@@ -24,39 +33,39 @@
       <h1>You are logged in but UNVERIFIED</h1>
     <% } else { %>
       <h1>You are a VISITOR</h1>
-    <% } %>
+    <% } %> -->
+      <p>Newest post:</p>
+      <% if (messages) { %>
+        <ul class="messagesList">
+          <% messages.forEach((message) => { %>
+            <li>
+              <div class="messageCard">
+                <div>
+                  <!-- Post author and timestamp is visible to members and original author -->
+                  <% if (currentUser && (currentUser.is_member || currentUser._id.equals(message.user._id))) { %>
+                    By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
+                  <% } else { %>
+                    Post authors and dates are visible to members
+                  <% } %>
+                  
+                  <!-- Remove link is visible to admins and original author -->
+                  <% if ( currentUser && (currentUser._id.equals(message.user._id) || currentUser.is_admin) ) { %> 
+                    <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a>
+                  <% } %>
 
-    <% if (messages) { %>
-      <ul class="messagesList">
-        <% messages.forEach((message) => { %>
-          <li>
-            <div class="messageCard">
-              <div>
-                <!-- Post author and timestamp is visible to members and original author -->
-                <% if (currentUser && (currentUser.is_member || currentUser._id.equals(message.user._id))) { %>
-                  By <%= message.user.email %> on <%= message.timestamp.toUTCString() %>
-                <% } else { %>
-                  Post authors and dates are visible to members
-                <% } %>
-                
-                <!-- Remove link is visible to admins and original author -->
-                <% if ( currentUser && (currentUser._id.equals(message.user._id) || currentUser.is_admin) ) { %> 
-                  <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a>
-                <% } %>
+                </div>
+                <p>
+                  <%= message.title %>
 
+                </p>
+                <p>
+                  <%= message.body %>
+                </p>
               </div>
-              <p>
-                <%= message.title %>
-
-              </p>
-              <p>
-                <%= message.body %>
-              </p>
-            </div>
-          </li>
-        <% }) %>   
-      </ul>
-    <% } %>
+            </li>
+          <% }) %>   
+        </ul>
+      <% } %>
       <p>End of post history.</p>
     </main>
     <%- include("./partials/footer"); %>

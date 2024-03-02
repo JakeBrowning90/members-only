@@ -1,21 +1,35 @@
 <header>
     <a href="/" class="homeLink">Message Board</a>
     
-    <!-- Conditional nav links -->
+    <p class="headerNametag">
+    <% if (currentUser) { %>
+        <%= currentUser.first_name + " " + currentUser.last_name %>
+    <% } else { %>
+        Visitor
+    <% } %>
+    </p>
+
+    <nav>
+    <!-- Display role and upgrade link -->
     <% if (currentUser && currentUser.is_admin) { %>
-        <h1>ADMIN: <%= currentUser.first_name + " " + currentUser.last_name %></h1>
-        <a href="/users/log-out">Log Out</a>
+        <p>Role: ADMIN</p>
     <% } else if (currentUser && currentUser.is_member) { %>
-        <h1>MEMBER: <%= currentUser.first_name + " " + currentUser.last_name %></h1>
-        <a href="/users/admin">Become Admin</a>
-        <a href="/users/log-out">Log Out</a>
+        <p>Role: MEMBER</p>
+        <a href="/users/admin">Upgrade to Admin</a>
     <% } else if (currentUser) { %>
-        <h1>PENDING MEMBER: <%= currentUser.first_name + " " + currentUser.last_name %></h1>
-        <a href="/users/confirm">Confirm</a>
-        <a href="/users/log-out">Log Out</a>
+        <p>Role: NEWCOMER</p>
+        <a href="/users/confirm">Upgrade to Member</a>
     <% } else { %>
         <a href="/users/sign-up">Sign Up</a>
+    <% } %>
+
+    <!-- Display log-in or log-out -->
+    <% if (currentUser) { %>
+        <a href="/users/log-out">Log Out</a>
+    <% } else { %>
         <a href="/users/log-in">Log In</a>
     <% } %>
+
+    </nav>
       
 </header>

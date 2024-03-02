@@ -1,10 +1,11 @@
 :root {
-  --palette-bg: #000280; 
-  --palette-body: #f2f3f47e;
-  --palette-button: #000280;
+  --palette-bg: #00039d; 
+  --palette-body: #f6f6f636;
+  --palette-headings: #fae209;
+  --palette-button: #fae209;
   --palette-form: grey;
   --palette-light-text: white;
-  --palette-post:rgb(0, 0, 208);
+  --palette-post:rgb(0, 0, 162);
 }
 
 * {
@@ -16,14 +17,31 @@ html, body {
   display: flex;
 }
 
+h1 {
+  font-size: 1.5em;
+  font-weight: bolder;
+  color: var(--palette-headings)
+}
+
 body {
-  background-color: var(--palette-bg);
+  /* background-color: var(--palette-bg); */
+  background: rgb(9,9,121);
+  background: linear-gradient(90deg, rgba(9,9,121,1) 1%, rgba(24,89,204,1) 52%, rgba(0,97,162,1) 100%);
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   width: 800px;
   margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 10px;
+}
+
+button {
+  background-color: var(--palette-button);
+  border-radius: 20px;
+  font-weight: bold;
+  height: 10vh;
+  width: 25%;
 }
 
 a {
@@ -34,27 +52,40 @@ form {
   display: flex;
   flex-direction: column;
   /* max-width: 800px; */
-  background-color: rgb(206, 206, 206);
+  background-color: var(--palette-post);
+  color: var(--palette-light-text);
+  border-radius: 20px;
   padding: 20px;
   gap: 5px;
 }
 
+.buttonWrapper {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+}
+
 header, footer {
-  background-color: var(--palette-bg);
+  background-color: var(--palette-body);
   color: var(--palette-light-text);
   padding: 10px;
 }
 
 header {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   height: 15vh;
   justify-content: end; 
-  gap: 5px;
+  gap: 5px; */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(2, 1fr);
+  border-radius: 0 0 10px 10px;
 }
 
 footer {
   margin-top: auto;
+  border-radius: 10px 10px 0 0;
+
 }
 
 main {
@@ -65,8 +96,21 @@ main {
   flex-grow: 1;
 }
 
+nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.headerNametag {
+  margin-left: auto;
+}
+
 .homeLink {
-  margin-right: auto;
+  /* margin-right: auto; */
+  grid-row: 1 / -1;
+  margin: auto;
+  font-size: 1.5rem;
 }
 
 .messagesList {
