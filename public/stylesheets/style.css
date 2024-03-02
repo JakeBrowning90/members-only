@@ -1,13 +1,14 @@
-* {
-  box-sizing: border-box;
+:root {
+  --palette-bg: #000280; 
+  --palette-body: #f2f3f47e;
+  --palette-button: #000280;
+  --palette-form: grey;
+  --palette-light-text: white;
+  --palette-post:rgb(0, 0, 208);
 }
 
-:root {
-  --palette-black: #212121;
-  --palette-blue: #00447c;
-  --palette-teal: #0b7b9e;
-  --palette-cream: #dddace;
-  --palette-white: #f2f3f4;
+* {
+  box-sizing: border-box;
 }
 
 html, body {
@@ -16,7 +17,7 @@ html, body {
 }
 
 body {
-  background-color: var(--palette-cream);
+  background-color: var(--palette-bg);
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   width: 800px;
   margin: 0 auto 0 auto;
@@ -26,7 +27,7 @@ body {
 }
 
 a {
-  color: black;
+  color: var(--palette-light-text);
 }
 
 form {
@@ -38,27 +39,30 @@ form {
   gap: 5px;
 }
 
+header, footer {
+  background-color: var(--palette-bg);
+  color: var(--palette-light-text);
+  padding: 10px;
+}
+
 header {
-  /* position: fixed; */
-  height: 100px;
-  width: 800px;
-  background-color: var(--palette-teal);
   display: flex;
   flex-direction: row;
+  height: 15vh;
   justify-content: end; 
-  padding: 20px;
   gap: 5px;
 }
 
-main {
-  background-color: var(--palette-white);
-  padding: 0 10px 0px 10px;
-  overflow: scroll;
+footer {
+  margin-top: auto;
 }
 
-footer {
-  background-color: var(--palette-teal);
-  padding: 20px;
+main {
+  background-color: var(--palette-body);
+  border-radius: 10px;
+  padding: 10px;
+  overflow: scroll;
+  flex-grow: 1;
 }
 
 .homeLink {
@@ -72,10 +76,10 @@ footer {
 }
 
 .messageCard {
+  background-color: var(--palette-post);
+  color: var(--palette-light-text);
   display: flex;
   flex-direction: column;
-  color: var(--palette-white);
-  background-color: var(--palette-blue);
   gap: 10px;
   padding: 10px;
   border-radius: 10px;
