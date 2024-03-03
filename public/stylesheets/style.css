@@ -17,6 +17,10 @@ html, body {
   display: flex;
 }
 
+a, p, button {
+  font-size: 1em;
+}
+
 h1 {
   font-size: 1.5em;
   font-weight: bolder;
@@ -29,16 +33,12 @@ h2 {
   color: var(--palette-light-text)
 }
 
-a, p, button {
-  font-size: 1em;
-}
-
 body {
   /* background-color: var(--palette-bg); */
   background: rgb(9,9,121);
   background: linear-gradient(90deg, rgba(9,9,121,1) 1%, rgba(24,89,204,1) 52%, rgba(0,97,162,1) 100%);
-  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
-  width: 800px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  max-width: 800px;
   margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
@@ -50,9 +50,7 @@ button {
   background-color: var(--palette-button);
   border-radius: 20px;
   font-weight: bold;
-  padding: 10px;
-  /* height: 10vh; */
-  /* width: 25%; */
+  padding: .7em;
 }
 
 a {
@@ -70,6 +68,10 @@ form {
   gap: 5px;
 }
 
+textarea {
+  resize: none;
+}
+
 .buttonWrapper {
   background-color: rgba(255, 255, 255, 0);
   padding: 0;
@@ -82,11 +84,6 @@ header, footer {
 }
 
 header {
-  /* display: flex;
-  flex-direction: row;
-  height: 15vh;
-  justify-content: end; 
-  gap: 5px; */
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(2, 1fr);
@@ -153,6 +150,5 @@ nav {
 }
 
 .removeMessageButton {
-  /* color: var(--palette-white); */
   margin-left: auto;
 }
