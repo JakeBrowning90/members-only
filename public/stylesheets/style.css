@@ -5,6 +5,7 @@
   --palette-button: #fae209;
   --palette-form: grey;
   --palette-light-text: white;
+  --palette-hover: #f8ee95;
   --palette-post:rgb(0, 0, 162);
 }
 
@@ -53,6 +54,10 @@ button {
   padding: .7em;
 }
 
+button:hover {
+  background-color: var(--palette-hover);
+}
+
 a {
   color: var(--palette-light-text);
 }
@@ -60,7 +65,6 @@ a {
 form {
   display: flex;
   flex-direction: column;
-  /* max-width: 800px; */
   background-color: var(--palette-post);
   color: var(--palette-light-text);
   border-radius: 20px;
@@ -122,7 +126,6 @@ nav {
 }
 
 .homeLink {
-  /* margin-right: auto; */
   grid-row: 1 / -1;
   margin: auto auto auto 0;
   font-size: 1.5rem;
