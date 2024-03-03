@@ -23,6 +23,12 @@ h1 {
   color: var(--palette-headings)
 }
 
+h2 {
+  font-size: 1.2em;
+  font-weight: bolder;
+  color: var(--palette-light-text)
+}
+
 body {
   /* background-color: var(--palette-bg); */
   background: rgb(9,9,121);
@@ -40,8 +46,9 @@ button {
   background-color: var(--palette-button);
   border-radius: 20px;
   font-weight: bold;
-  height: 10vh;
-  width: 25%;
+  padding: 10px;
+  /* height: 10vh; */
+  /* width: 25%; */
 }
 
 a {
@@ -80,6 +87,7 @@ header {
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(2, 1fr);
   border-radius: 0 0 10px 10px;
+  height: 100px;
 }
 
 footer {
@@ -91,9 +99,15 @@ footer {
 main {
   background-color: var(--palette-body);
   border-radius: 10px;
-  padding: 10px;
-  overflow: scroll;
+  color: var(--palette-light-text);
   flex-grow: 1;
+  overflow: scroll;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
 }
 
 nav {

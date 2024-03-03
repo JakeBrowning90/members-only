@@ -1,33 +1,57 @@
 <header>
     <a href="/" class="homeLink">Message Board</a>
-    
+
+    <!-- Display name and role -->
     <p class="headerNametag">
     <% if (currentUser) { %>
         <%= currentUser.first_name + " " + currentUser.last_name %>
     <% } else { %>
         Visitor
     <% } %>
+
+    <% if (currentUser && currentUser.is_admin) { %>
+        - ADMIN
+    <% } else if (currentUser && currentUser.is_member) { %>
+        - MEMBER
+    <% } else if (currentUser) { %>
+        - NEWCOMER
+    <% } %>
     </p>
 
     <nav>
+    <% if (currentUser) { %>
+        <form class="buttonWrapper" action="/messages/new-message">
+            <button>Write New Message</button>
+        </form>
+    <% } %>
+      
+
     <!-- Display role and upgrade link -->
-    <% if (currentUser && currentUser.is_admin) { %>
-        <p>Role: ADMIN</p>
-    <% } else if (currentUser && currentUser.is_member) { %>
-        <p>Role: MEMBER</p>
-        <a href="/users/admin">Upgrade to Admin</a>
-    <% } else if (currentUser) { %>
-        <p>Role: NEWCOMER</p>
-        <a href="/users/confirm">Upgrade to Member</a>
+    <% if (currentUser && (!currentUser.is_admin && currentUser.is_member )) { %>
+        <form class="buttonWrapper" action="/users/admin">
+            <button>Upgrade to Admin</button>
+        </form>
+    <% } else if (currentUser && !currentUser.is_member) { %>
+        <form class="buttonWrapper" action="/users/confirm">
+            <button>Upgrade to Member</button>
+        </form>
     <% } else { %>
-        <a href="/users/sign-up">Sign Up</a>
+        <form class="buttonWrapper" action="/users/sign-up">
+            <button>Sign Up to Post!</button>
+        </form>
     <% } %>
 
     <!-- Display log-in or log-out -->
     <% if (currentUser) { %>
-        <a href="/users/log-out">Log Out</a>
+        <!-- <a href="/users/log-out">Log Out</a> -->
+        <form class="buttonWrapper" action="/users/log-out">
+            <button>Log Out</button>
+        </form>
     <% } else { %>
-        <a href="/users/log-in">Log In</a>
+        <!-- <a href="/users/log-in">Log In</a> -->
+        <form class="buttonWrapper" action="/users/log-in">
+            <button>Log In</button>
+        </form>
     <% } %>
 
     </nav>

@@ -7,8 +7,7 @@
       <!-- <h1>Welcome to "<%= title %>"</h1> -->
     
     <!-- Only show link to new message form for members -->
-    <% if (currentUser) { %>
-      <!-- <a href="/messages/new-message">New Message</a> -->
+    <!-- <% if (currentUser) { %>
       <form class="buttonWrapper" action="/messages/new-message">
         <button>
           Write New Message
@@ -20,10 +19,9 @@
           Sign up to join the conversation!
         </button>
       </form>
-    <% } %>
+    <% } %> -->
 
     <!-- Placeholder for testing -->
-    <hr>
 
     <!-- <% if (currentUser && currentUser.is_admin) { %>
       <h1>You are logged in as an ADMIN</h1>
@@ -35,6 +33,8 @@
       <h1>You are a VISITOR</h1>
     <% } %> -->
       <p>Newest post:</p>
+      <!-- <hr> -->
+
       <% if (messages) { %>
         <ul class="messagesList">
           <% messages.forEach((message) => { %>
@@ -54,10 +54,9 @@
                   <% } %>
 
                 </div>
-                <p>
+                <h2>
                   <%= message.title %>
-
-                </p>
+                </h2>
                 <p>
                   <%= message.body %>
                 </p>
@@ -66,6 +65,7 @@
           <% }) %>   
         </ul>
       <% } %>
+      <!-- <hr> -->
       <p>End of post history.</p>
     </main>
     <%- include("./partials/footer"); %>
