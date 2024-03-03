@@ -63,13 +63,22 @@ a {
 }
 
 form {
+  border-radius: 20px;
+}
+
+.pageForm {
   display: flex;
   flex-direction: column;
   background-color: var(--palette-post);
   color: var(--palette-light-text);
-  border-radius: 20px;
   padding: 20px;
-  gap: 5px;
+  gap: 10px;
+  width: 100%;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
 }
 
 textarea {
