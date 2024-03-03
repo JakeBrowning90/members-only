@@ -63,10 +63,11 @@ a {
 }
 
 form {
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .pageForm {
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   background-color: var(--palette-post);
@@ -74,6 +75,10 @@ form {
   padding: 20px;
   gap: 10px;
   width: 100%;
+}
+
+.pageForm > button {
+  margin: auto;
 }
 
 .formSection {

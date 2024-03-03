@@ -15,14 +15,17 @@
         </ul>
       <% } %>
       <form action="" method="POST" class="pageForm">
-        <label for="username">Email/Username:</label>
+        <div class="formSection">
+          <label for="username">Email/Username:</label>
         <input name="username" 
               type="text" 
               maxlength="30"
-              required
-        >
-        <label for="password">Password:</label>
-        <input name="password" type="password" maxlength="20" required>
+              required>
+        </div>
+        <div class="formSection">
+          <label for="password">Password:</label>
+          <input name="password" type="password" maxlength="20" required>
+        </div>
         <button>Submit</button>
       </form>
     </main>
