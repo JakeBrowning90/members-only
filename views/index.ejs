@@ -4,36 +4,8 @@
   <body>
     <%- include("./partials/header"); %>
     <main>
-      <!-- <h1>Welcome to "<%= title %>"</h1> -->
-    
-    <!-- Only show link to new message form for members -->
-    <!-- <% if (currentUser) { %>
-      <form class="buttonWrapper" action="/messages/new-message">
-        <button>
-          Write New Message
-        </button>
-      </form>
-    <% } else { %>
-      <form class="buttonWrapper" action="/users/sign-up">
-        <button>
-          Sign up to join the conversation!
-        </button>
-      </form>
-    <% } %> -->
-
-    <!-- Placeholder for testing -->
-
-    <!-- <% if (currentUser && currentUser.is_admin) { %>
-      <h1>You are logged in as an ADMIN</h1>
-    <% } else if (currentUser && currentUser.is_member) { %>
-      <h1>You are logged in as a MEMBER</h1>
-    <% } else if (currentUser) { %>
-      <h1>You are logged in but UNVERIFIED</h1>
-    <% } else { %>
-      <h1>You are a VISITOR</h1>
-    <% } %> -->
+     
       <p>Newest post:</p>
-      <!-- <hr> -->
 
       <% if (messages) { %>
         <ul class="messagesList">
@@ -50,7 +22,10 @@
                   
                   <!-- Remove link is visible to admins and original author -->
                   <% if ( currentUser && (currentUser._id.equals(message.user._id) || currentUser.is_admin) ) { %> 
-                    <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a>
+                    <!-- <a href="<%= message.url %>/delete" class="removeMessageLink">Remove</a> -->
+                    <form class="buttonWrapper removeMessageButton" action="<%= message.url %>/delete">
+                      <button>Remove</button>
+                    </form>
                   <% } %>
 
                 </div>
@@ -65,8 +40,9 @@
           <% }) %>   
         </ul>
       <% } %>
-      <!-- <hr> -->
+
       <p>End of post history.</p>
+
     </main>
     <%- include("./partials/footer"); %>
   </body>

@@ -29,6 +29,10 @@ h2 {
   color: var(--palette-light-text)
 }
 
+a, p, button {
+  font-size: 1em;
+}
+
 body {
   /* background-color: var(--palette-bg); */
   background: rgb(9,9,121);
@@ -123,7 +127,7 @@ nav {
 .homeLink {
   /* margin-right: auto; */
   grid-row: 1 / -1;
-  margin: auto;
+  margin: auto auto auto 0;
   font-size: 1.5rem;
 }
 
@@ -148,7 +152,7 @@ nav {
   flex-direction: row;
 }
 
-.removeMessageLink {
-  color: var(--palette-white);
+.removeMessageButton {
+  /* color: var(--palette-white); */
   margin-left: auto;
 }

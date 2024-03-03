@@ -2,7 +2,7 @@
     <a href="/" class="homeLink">Message Board</a>
 
     <!-- Display name and role -->
-    <p class="headerNametag">
+    <h2 class="headerNametag">
     <% if (currentUser) { %>
         <%= currentUser.first_name + " " + currentUser.last_name %>
     <% } else { %>
@@ -16,7 +16,7 @@
     <% } else if (currentUser) { %>
         - NEWCOMER
     <% } %>
-    </p>
+    </h2>
 
     <nav>
     <% if (currentUser) { %>
@@ -27,7 +27,9 @@
       
 
     <!-- Display role and upgrade link -->
-    <% if (currentUser && (!currentUser.is_admin && currentUser.is_member )) { %>
+    <% if (currentUser && currentUser.is_admin ) { %>
+
+    <% } else if (currentUser && currentUser.is_member ) { %>
         <form class="buttonWrapper" action="/users/admin">
             <button>Upgrade to Admin</button>
         </form>
