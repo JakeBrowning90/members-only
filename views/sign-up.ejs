@@ -34,7 +34,7 @@
                 required>
         </div>
         <div class="formSection">
-          <label for="email">Email:</label>
+          <label for="email">Email (Username):</label>
           <input name="email" 
                 type="text" 
                 maxlength="30"
@@ -43,11 +43,11 @@
         </div>
         <div class="formSection">
           <label for="password">Password:</label>
-          <input name="password" type="password" maxlength="20" required>
+          <input name="password" type="password" minlength="8" maxlength="20" required>
         </div>
         <div class="formSection">
           <label for="confirm_password">Re-type Password:</label>
-          <input name="confirm_password" type="password" maxlength="20" required>  
+          <input name="confirm_password" type="password" minlength="8" maxlength="20" required>  
         </div>
         <button>Submit</button>
       </form>
