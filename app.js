@@ -13,7 +13,10 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const messagesRouter = require('./routes/messages');
 
-const User = require('./models/user');
+const compression = require("compression");
+const helmet = require("helmet");
+
+// const User = require('./models/user');
 
 const app = express();
 
@@ -44,6 +47,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  }),
+);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
