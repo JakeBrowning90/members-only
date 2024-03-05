@@ -62,10 +62,6 @@ a {
   color: var(--palette-light-text);
 }
 
-form {
-  /* border-radius: 20px; */
-}
-
 .pageForm {
   border-radius: 10px;
   display: flex;
