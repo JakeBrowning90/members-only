@@ -3,16 +3,16 @@ var router = express.Router();
 
 const message_controller = require('../controllers/messageController');
 
-// TODO: get new message form (or make popup on home?)
+// Get new message form 
 router.get('/new-message', message_controller.message_form_get);
 
-// TODO: post new message
+// Post new message
 router.post('/new-message', message_controller.message_form_post);
 
-// TODO: get delete messate form
+// Get delete message form
 router.get('/:id/delete', message_controller.message_delete_get);
 
-// TODO: post delete message form
+// Post delete message form
 router.post('/:id/delete', message_controller.message_delete_post);
 
 module.exports = router;
