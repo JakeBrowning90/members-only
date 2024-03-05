@@ -143,6 +143,7 @@ nav {
   grid-row: 1 / -1;
   margin: auto auto auto 0;
   font-size: 1.5rem;
+  font-weight: bolder;
 }
 
 .messagesList {
