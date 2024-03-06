@@ -5,7 +5,7 @@ const UserSchema = new Schema({
     first_name: { type: String, maxLength: 20 },
     last_name: { type: String, maxLength: 20 },
     email: { type: String, maxLength: 30 },
-    password: { type: String, maxLength: 20, minLength: 8 },
+    password: { type: String, },
     is_member: { type: Boolean },
     is_admin: { type: Boolean }
 });
